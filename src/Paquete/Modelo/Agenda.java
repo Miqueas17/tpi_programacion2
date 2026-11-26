@@ -11,7 +11,7 @@ public class Agenda {
         this.fecha = fecha;
         this.diaDeLaSemana = diaDeLaSemana;
         this.hora = hora;
-        this.estado = estado;
+        this.estado = "Libre";
     }
 
     public String getFecha(){ return fecha; }

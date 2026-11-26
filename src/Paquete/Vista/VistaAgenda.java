@@ -26,10 +26,6 @@ public class VistaAgenda {
     return scanner.nextLine();
    }
 
-   public void mostrarInformacion(String[] d) {
-     System.out.println(d[0] + " - " + d[1] + " - " + d[2] + " - " + d[3]);
-   }
-
    public String solicitarHoraAgenda(int numero, int total) {
         System.out.print("Horario " + numero + " de " + total + ": ");
         return scanner.nextLine();
@@ -39,7 +35,6 @@ public class VistaAgenda {
     public void mostrarAgenda(Agenda[][] agenda) {
         System.out.println("\n===== AGENDA SEMANAL =====");
         for (int i = 0; i < agenda.length; i++) {
-            // Etiqueta de la fila: el día si tiene datos, o "null" si está vacía
             String etiqueta = (agenda[i][0] != null)
                     ? agenda[i][0].getDiaDeLaSemana()
                     : "null";

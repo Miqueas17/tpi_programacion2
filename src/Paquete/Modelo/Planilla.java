@@ -36,4 +36,5 @@ public class Planilla {
 
     public void setDuracion(String duracion){ this.duracion = duracion; }
 
+
 }
