@@ -1,31 +1,32 @@
 package Controlador;
-
 import java.util.ArrayList;
-
 import Modelo.Planilla;
+import Modelo.Servicio;
+import Modelo.Turno;
 import Vista.VistaPlanilla;
-import Vista.VistaProfesional;
-
-
-
 
 public class ControladorPlanilla {
     private VistaPlanilla vista;
     private Planilla Modelo;
     private ControladorAgenda controladorAgenda;
     private ControladorProfesional controladorProfesional;
-    private VistaProfesional vistaProfesional;
     private ControladorCliente controladorCliente;
+    private ControladorServicio controladorServicio;
+    private ControladorTurno controladorTurno;
     private ArrayList<Planilla> listaPlanillas = new ArrayList<>();
 
     public ControladorPlanilla(VistaPlanilla vista,
                                ControladorAgenda controladorAgenda,
                                ControladorProfesional controladorProfesional,
-                               ControladorCliente controladorCliente) {
+                               ControladorCliente controladorCliente,
+                               ControladorServicio controladorServicio,
+                               ControladorTurno controladorTurno) {
         this.vista = vista;
         this.controladorAgenda = controladorAgenda;
         this.controladorProfesional = controladorProfesional;
         this.controladorCliente = controladorCliente;
+        this.controladorServicio = controladorServicio;
+        this.controladorTurno = controladorTurno;
     }
 
     public void crearNuevoObjeto() {
@@ -44,6 +45,16 @@ public class ControladorPlanilla {
 
         this.Modelo = new Planilla(fd, fa, hd, ha, d);
         listaPlanillas.add(this.Modelo);
+
+        Servicio servicio = controladorServicio.getModelo();
+        Turno turno = new Turno(
+                this.Modelo,
+                controladorCliente.getModelo(),
+                controladorProfesional.getModelo(),
+                servicio,
+                this.Modelo);
+        controladorTurno.agregarTurno(turno);
+
         vista.mostrarMensaje(resultado);
     }
 
@@ -63,69 +74,75 @@ public class ControladorPlanilla {
     }
 
     public void menuPrincipal() {
-    int opcion;
-    do {
-        vista.mostrarMenuPrincipal();
-        opcion = vista.solicitarOpcion();
+        int opcion;
+        do {
+            vista.mostrarMenuPrincipal();
+            opcion = vista.solicitarOpcion();
 
-        switch (opcion) {
-            case 1:
-                menuCliente();
-                break;
-            case 2:
-                menuProfesional();
-                break;
-            case 0:
-                vista.mostrarMensaje("Saliendo del sistema...");
-                break;
-            default:
-                vista.mostrarMensaje("Opcion no valida");
-        }
-    } while (opcion != 0);
+            switch (opcion) {
+                case 1:
+                    menuCliente();
+                    break;
+                case 2:
+                    menuProfesional();
+                    break;
+                case 0:
+                    vista.mostrarMensaje("Saliendo del sistema...");
+                    break;
+                default:
+                    vista.mostrarMensaje("Opcion no valida");
+            }
+        } while (opcion != 0);
     }
-    
+
     private void menuCliente() {
-    int opcion;
-    do {
         controladorCliente.crearNuevoObjeto();
-        vista.mostrarMenuCliente();
-        opcion = vista.solicitarOpcion();
+        int opcion;
+        do {
+            vista.mostrarMenuCliente();
+            opcion = vista.solicitarOpcion();
 
-        switch (opcion) {
-            case 1:
-                controladorAgenda.mostrarInformacion();
-                crearNuevoObjeto();
-                break;
-            case 2:
-                vistaProfesional.mostrarInformacion(null);
-                break;
-            case 0:
-                break;
-            default:
-                vista.mostrarMensaje("Opcion no valida");
-        }
-    } while (opcion != 0);
-}
+            switch (opcion) {
+                case 1:
+                    controladorAgenda.mostrarInformacion();
+                    crearNuevoObjeto();
+                    break;
+                case 2:
+                    controladorProfesional.mostrarInformacion();
+                    break;
+                case 3:
+                    controladorAgenda.mostrarInformacion();
+                    break;
+                case 0:
+                    break;
+                default:
+                    vista.mostrarMensaje("Opcion no valida");
+            }
+        } while (opcion != 0);
+    }
 
-private void menuProfesional() {
-    int opcion;
-    do {
+    private void menuProfesional() {
         controladorProfesional.crearNuevoObjeto();
-        vista.mostrarMenuProfesional();
-        opcion = vista.solicitarOpcion();
+        int opcion;
+        do {
+            vista.mostrarMenuProfesional();
+            opcion = vista.solicitarOpcion();
 
-        switch (opcion) {
-            case 1:
-                controladorAgenda.crearNuevoObjeto(); 
-                break;
-            case 2:
-                controladorProfesional.crearNuevoObjeto();
-                break;
-            case 0:
-                break;
-            default:
-                vista.mostrarMensaje("Opcion no valida");
-        }
-    } while (opcion != 0);
-}
+            switch (opcion) {
+                case 1:
+                    controladorAgenda.crearNuevoObjeto();
+                    break;
+                case 2:
+                    controladorProfesional.crearNuevoObjeto();
+                    break;
+                case 3:
+                    controladorTurno.mostrarTurnos();
+                    break;
+                case 0:
+                    break;
+                default:
+                    vista.mostrarMensaje("Opcion no valida");
+            }
+        } while (opcion != 0);
+    }
 }

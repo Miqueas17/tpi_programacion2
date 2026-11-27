@@ -10,6 +10,10 @@ public class ControladorServicio {
     private Servicio Modelo;
     private ArrayList <Servicio> listaServicio = new ArrayList<>();
 
+    public ControladorServicio(VistaServicio vista) {
+        this.vista = vista;
+    }
+
     public void crearNuevoObjeto(){
         String n = vista.solicitarNombre();
         double p = vista.solicitarSolicitarPrecio();
