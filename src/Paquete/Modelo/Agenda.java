@@ -29,4 +29,9 @@ public class Agenda {
     public void setHora(String hora){ this.hora = hora; }
 
     public void setEstado(String estado){ this.estado = estado; }
+
+    public String cambiarEstado(){
+        this.estado = "Ocupado";
+        return estado;
+    }
 }

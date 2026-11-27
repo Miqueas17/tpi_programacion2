@@ -2,15 +2,13 @@ package Modelo;
 
 public class Turno {
     private Planilla fecha;
-    //private boolean asistencia;
     private Cliente cliente;
     private Profesional profesional;
     private Servicio servicio;
     
-    public Turno(Planilla fecha, boolean asistencia , Cliente cliente, Profesional profesional, Servicio servicio)
+    public Turno(Planilla fecha, Cliente cliente, Profesional profesional, Servicio servicio)
     {
         this.fecha = fecha;
-        //this.asistencia = false;
         this.cliente = cliente;
         this.profesional = profesional;
         this.servicio = servicio;
@@ -32,5 +30,4 @@ public class Turno {
 
     public void setServicio(Servicio servicio){ this.servicio = servicio; }
 
-    //public void setregistrarAsistencia(){this.asistencia = true;}
 }

@@ -32,20 +32,18 @@ public class VistaAgenda {
     }
 
 
-    public void mostrarAgenda(Agenda[][] agenda) {
-        System.out.println("\n===== AGENDA SEMANAL =====");
-        for (int i = 0; i < agenda.length; i++) {
-            String etiqueta = (agenda[i][0] != null)
-                    ? agenda[i][0].getDiaDeLaSemana()
-                    : "null";
-            System.out.printf("%-12s|", etiqueta);
+  public void mostrarAgenda(Agenda[][] agenda) {
+        System.out.println("===== AGENDA SEMANAL =====");
 
+        for (int i = 0; i < agenda.length; i++) {
             for (int j = 0; j < agenda[i].length; j++) {
                 Agenda a = agenda[i][j];
-                String celda = (a == null)
-                        ? "null"
-                        : a.getHora() + " (" + a.getEstado() + ")";
-                System.out.printf(" %-16s|", celda);
+
+                if (a == null) {
+                    System.out.print("null | ");
+                } else {
+                    System.out.print(a.getHora() + " (" + a.getEstado() + ") | ");
+                }
             }
             System.out.println();
         }

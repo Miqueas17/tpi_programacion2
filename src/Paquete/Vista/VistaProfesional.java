@@ -13,6 +13,7 @@ public class VistaProfesional {
    }
 
    public void mostrarInformacion(String[] d) {
+    System.out.println("Profesionales: ");
      System.out.println(d[0] + " - " + d[1]);
    }
 }
