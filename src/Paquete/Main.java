@@ -1,30 +1,28 @@
 
 import Controlador.ControladorAgenda;
+import Controlador.ControladorCliente;
 //import Controlador.ControladorCliente;
 import Controlador.ControladorPlanilla;
+import Controlador.ControladorProfesional;
 //import Controlador.ControladorProfesional;
 import Vista.VistaAgenda;
+import Vista.VistaCliente;
 //import Vista.VistaCliente;
 import Vista.VistaPlanilla;
 //import Vista.VistaProfesional;
+import Vista.VistaProfesional;
 
 
 public class Main {
     public static void main(String[] args) {
-    //ControladorCliente ctrl = new ControladorCliente(new VistaCliente());
-   //ControladorProfesional ctrlp = new ControladorProfesional(new VistaProfesional());
-    //ctrl.crearNuevoObjeto();
-   // ctrl.mostrarInformacion();
-    //ctrlp.crearNuevoObjeto();
-    //ctrlp.mostrarInformacion();
+    ControladorAgenda controladorAgenda = new ControladorAgenda(new VistaAgenda());
+    ControladorProfesional controladorProfesional = new ControladorProfesional(new VistaProfesional());
+    ControladorCliente controladorCliente = new ControladorCliente(new VistaCliente());
 
-    ControladorAgenda agenda = new ControladorAgenda(new VistaAgenda());
+    ControladorPlanilla controladorPlanilla = new ControladorPlanilla(
+        new VistaPlanilla(), controladorAgenda, controladorProfesional, controladorCliente);
 
-    //agenda.crearNuevoObjeto();
-    //agenda.mostrarInformacion();
+    controladorPlanilla.menuPrincipal();
 
-    ControladorPlanilla pla = new ControladorPlanilla(new VistaPlanilla(), agenda);
-    pla.menuPrincipal();
-
-}
+    }
 }

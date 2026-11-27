@@ -18,9 +18,14 @@ public class ControladorPlanilla {
     private ControladorCliente controladorCliente;
     private ArrayList<Planilla> listaPlanillas = new ArrayList<>();
 
-    public ControladorPlanilla(VistaPlanilla vista, ControladorAgenda controladorAgenda) {
+    public ControladorPlanilla(VistaPlanilla vista,
+                               ControladorAgenda controladorAgenda,
+                               ControladorProfesional controladorProfesional,
+                               ControladorCliente controladorCliente) {
         this.vista = vista;
         this.controladorAgenda = controladorAgenda;
+        this.controladorProfesional = controladorProfesional;
+        this.controladorCliente = controladorCliente;
     }
 
     public void crearNuevoObjeto() {
